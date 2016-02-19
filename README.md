@@ -6,7 +6,7 @@
 [license]: https://github.com/tcnksm/go-holidayjp/blob/master/LICENSE
 [godocs]: http://godoc.org/github.com/tcnksm/go-holidayjp
 
-`go-holidayjp` is a Go package for detecting holiday in Japan. This is port of ruby's [komagata/holiday_jp](https://github.com/komagata/holiday_jp).
+`go-holidayjp` is a Go package for detecting holiday in Japan. This is Go port of [komagata/holiday_jp](https://github.com/komagata/holiday_jp).
 
 The documentation is on [GoDoc][godocs].
 
