@@ -34,7 +34,7 @@ func equal(t0, t1 time.Time) bool {
 
 func holidays() map[string]string {
 	var s map[string]string
-	buf, _ := asset.Asset("holidays.yml")
+	buf, _ := asset.Asset("asset/holidays.yml")
 	yaml.Unmarshal(buf, &s)
 	return s
 }
