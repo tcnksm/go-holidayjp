@@ -10,6 +10,12 @@ import (
 
 //go:generate go-bindata -pkg=asset -o asset/asset.go ./asset/holidays.yml
 
+var holidayMap map[string]string
+
+func init() {
+	holidayMap = holidays()
+}
+
 // Holiday returns Holiday name of the given time.
 // If it's not holiday, returns error.
 func holiday(t time.Time) (string, error) {
@@ -19,11 +25,9 @@ func holiday(t time.Time) (string, error) {
 
 // IsHoliday reports whether the time is holiday.
 func IsHoliday(target time.Time) bool {
-	for dateStr, _ := range holidays() {
-		date, _ := time.Parse("2006-01-02", dateStr)
-		if equal(target, date) {
-			return true
-		}
+	t := target.Format("2006-01-02")
+	if _, ok := holidayMap[t]; ok {
+		return true
 	}
 	return false
 }
