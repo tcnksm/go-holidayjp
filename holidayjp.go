@@ -2,6 +2,7 @@
 package holidayjp
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/tcnksm/go-holidayjp/asset"
@@ -10,17 +11,22 @@ import (
 
 //go:generate go-bindata -pkg=asset -o asset/asset.go ./asset/holidays.yml
 
+var ErrNotHoliday = fmt.Errorf("not holiday")
+
 var holidayMap map[string]string
 
 func init() {
 	holidayMap = holidays()
 }
 
-// Holiday returns Holiday name of the given time.
-// If it's not holiday, returns error.
-func holiday(t time.Time) (string, error) {
-	// TODO
-	return "", nil
+// HolidayName returns Holiday name of the given time.
+// If it's not holiday, returns error(ErrNotHoliday).
+func HolidayName(target time.Time) (string, error) {
+	t := target.Format("2006-01-02")
+	if name, ok := holidayMap[t]; ok {
+		return name, nil
+	}
+	return "", ErrNotHoliday
 }
 
 // IsHoliday reports whether the time is holiday.
