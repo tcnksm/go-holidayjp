@@ -40,7 +40,7 @@ func TestIsHoliday(t *testing.T) {
 	}
 }
 
-func TestHolidayName(t *testing.T) {
+func TestHoliday(t *testing.T) {
 	location, err := time.LoadLocation("Asia/Tokyo")
 	if err != nil {
 		log.Fatalf("err: %s", err)
@@ -69,7 +69,7 @@ func TestHolidayName(t *testing.T) {
 	}
 
 	for i, tc := range cases {
-		output, err := HolidayName(tc.input)
+		output, err := Holiday(tc.input)
 		if tc.error && err == nil {
 			t.Fatalf("#%d expects error, but nil returned", i)
 		}
