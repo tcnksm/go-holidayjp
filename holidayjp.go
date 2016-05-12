@@ -2,6 +2,7 @@
 package holidayjp
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/tcnksm/go-holidayjp/asset"
@@ -17,10 +18,13 @@ func init() {
 }
 
 // Holiday returns Holiday name of the given time.
-// If it's not holiday, returns error.
-func holiday(t time.Time) (string, error) {
-	// TODO
-	return "", nil
+// If it's not holiday, returns error(ErrNotHoliday).
+func Holiday(target time.Time) (string, error) {
+	t := target.Format("2006-01-02")
+	if name, ok := holidayMap[t]; ok {
+		return name, nil
+	}
+	return "", fmt.Errorf("holiday is not found")
 }
 
 // IsHoliday reports whether the time is holiday.
